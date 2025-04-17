@@ -85,3 +85,7 @@ def handle_all_messages(message):
 # تشغيل البوت
 print("Bot is running...")
 bot.infinity_polling()
+
+if __name__ == '__main__':
+    print('Bot is running...')
+    bot.infinity_polling()
