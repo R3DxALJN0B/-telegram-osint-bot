@@ -48,32 +48,19 @@ def handle_message(message):
 
     markup.add(InlineKeyboardButton("theHarvester", callback_data="harvester"))
 
-    text = (
-        f"أدخلت: {query}
+    text = ""  # تم تعطيل المتغير لأنه غير مستخدم
+    print(f"أدخلت: {query}")
+    print("اختر نوع الأداة حسب نوع البيانات:")
+    print("— أدوات البحث عن الاسم (Username):")
+    print("Sherlock، SocialScan، Username-Search")
+    print("— أدوات البحث عن البريد الإلكتروني:")
+    print("Holehe، EmailRep، Skymem")
 
-"
-        "اختر نوع الأداة حسب نوع البيانات:
+    print("— أدوات البحث عن رقم الجوال:")
+    print("PhoneInfoga")
 
-"
-        "— أدوات البحث عن الاسم (Username):
-"
-        "Sherlock، SocialScan، Username-Search
-
-"
-        "— أدوات البحث عن البريد الإلكتروني:
-"
-        "Holehe، EmailRep، Skymem
-
-"
-        "— أدوات البحث عن رقم الجوال:
-"
-        "PhoneInfoga
-
-"
-        "— أدوات البحث عن الإيميلات والدومينات:
-"
-        "theHarvester"
-    )
+    print("— أدوات البحث عن الإيميلات والدومينات:")
+    print("theHarvester")
 
     bot.send_message(message.chat.id, text, reply_markup=markup)
 
