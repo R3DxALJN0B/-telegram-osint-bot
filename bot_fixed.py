@@ -1,3 +1,6 @@
+
+import subprocess
+
 import os
 import telebot
 import subprocess
@@ -27,7 +30,7 @@ def search_all(query):
     results = []
     # Sherlock
     results.append("=== Sherlock ===\n")
-    results.append(run_tool(f"python3 sherlock/sherlock.py {query} --print-found"))
+    results.append(run_tool(f"python3 sherlock/sherlock_project/sherlock.py {query} --print-found"))
 
     # Holehe (email only)
     if "@" in query:
@@ -45,11 +48,11 @@ def search_all(query):
     # theHarvester (email/domain only)
     if "@" in query or "." in query:
         results.append("\n=== theHarvester ===\n")
-        results.append(run_tool(f"python3 theHarvester/theHarvester.py -d {query} -b all"))
+        results.append(run_tool(f"echo "theHarvester غير مثبت حالياً" -d {query} -b all"))
 
     # SocialScan (user/email)
     results.append("\n=== SocialScan ===\n")
-    results.append(run_tool(f"python3 socialscan/socialscan.py --username {query} --email {query}"))
+    results.append(run_tool(f"echo "socialscan غير مثبت حالياً" --username {query} --email {query}"))
 
     # Skymem (email)
     if "@" in query:
@@ -85,3 +88,18 @@ def handle_all_messages(message):
 # تشغيل البوت
 print("Bot is running...")
 bot.infinity_polling()
+
+
+def run_sherlock(username):
+    try:
+        result = subprocess.run(['python3', 'sherlock/sherlock.py', username], capture_output=True, text=True, timeout=300)
+        return result.stdout if result.returncode == 0 else result.stderr
+    except Exception as e:
+        return f"Error running sherlock: {e}"
+
+def run_socialscan(email_or_username):
+    try:
+        result = subprocess.run(['python3', 'socialscan/socialscan/__main__.py', email_or_username], capture_output=True, text=True, timeout=300)
+        return result.stdout if result.returncode == 0 else result.stderr
+    except Exception as e:
+        return f"Error running socialscan: {e}"
