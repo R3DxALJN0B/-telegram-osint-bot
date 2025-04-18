@@ -27,7 +27,7 @@ def search_all(query):
     results = []
     # Sherlock
     results.append("=== Sherlock ===\n")
-    results.append(run_tool(f"python3 sherlock/sherlock.py {query} --print-found"))
+    results.append(run_tool(f"python3 sherlock/sherlock_project/sherlock.py {query} --print-found"))
 
     # Holehe (email only)
     if "@" in query:
